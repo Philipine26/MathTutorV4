@@ -47,12 +47,14 @@ int main() {
     int currentRange = LEVEL_RANGE_CHANGE;
 
     srand(time(0)); // Allows for a unique seed for each program run (ZyBooks2.19.3)
-    cout << "***********************************************************************" << endl;
-    cout << "oooo     oooo            o8   oooo             ooooooooooo              o8                             ooooo  oooo  ooooooo" << endl;
-    cout << "8888o   888   ooooooo o888oo  888ooooo        88  888  88 oooo  oooo o888oo ooooooo  oo oooooo         888    88 o88    888o" << endl;
-    cout << "88 888o8 88   ooooo888 888    888   888           888      888   888  888 888     888 888    888        888  88      88888o"  << endl;
-    cout << "88  888  88 888    888 888    888   888           888      888   888  888 888     888 888                88888   88o    o888" << endl;
-    cout << "o88o  8  o88o 88ooo88 8o 888o o888o o888o         o888o      888o88 8o  888o 88ooo88  o888o                888      88ooo88"  << endl;
+    cout << "#     #                        #######                               #     # #      " << endl;
+    cout << "##   ##   ##   ##### #    #       #    #    # #####  ####  #####     #     # #    # " << endl;
+    cout << "# # # #  #  #    #   #    #       #    #    #   #   #    # #    #    #     # #    # " << endl;
+    cout << "#  #  # #    #   #   ######       #    #    #   #   #    # #    #    #     # #    # " << endl;
+    cout << "#     # ######   #   #    #       #    #    #   #   #    # #####      #   #  #######" << endl;
+    cout << "#     # #    #   #   #    #       #    #    #   #   #    # #   #       # #        # " << endl;
+    cout << "#     # #    #   #   #    #       #     ####    #    ####  #    #       #         #  " << endl;
+
     cout << "***********************************************************************" << endl;
     cout << " Welcome to MathTutorV3!" << endl;
     cout << "***********************************************************************" << endl;

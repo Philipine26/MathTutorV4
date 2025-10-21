@@ -22,18 +22,10 @@ Displays whether the user's answer is the correct answer for the math question i
 ## Console Correct Output Example
 ```
 ***********************************************************************
-oooo     oooo            o8   oooo             ooooooooooo              o8                             ooooo  oooo  oooo
-ooo
-8888o   888   ooooooo o888oo  888ooooo        88  888  88 oooo  oooo o888oo ooooooo  oo oooooo         888    88 o88
-888o
-88 888o8 88   ooooo888 888    888   888           888      888   888  888 888     888 888    888        888  88      888
-88o
-88  888  88 888    888 888    888   888           888      888   888  888 888     888 888                88888   88o
-o888
-o88o  8  o88o 88ooo88 8o 888o o888o o888o         o888o      888o88 8o  888o 88ooo88  o888o                888      88oo
-o88
+
+
 ***********************************************************************
- Welcome to MathTutorV3!
+ Welcome to MathTutorV4!
 ***********************************************************************
  Parallel lines have so much in common. It's a shame they'll never meet.
  I'd tell you a joke about infinity, but it would go on forever.
