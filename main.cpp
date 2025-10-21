@@ -56,11 +56,13 @@ int main() {
     cout << "#     # #    #   #   #    #       #     ####    #    ####  #    #       #         #  " << endl;
 
     cout << "***********************************************************************" << endl;
-    cout << " Welcome to MathTutorV4!" << endl;
+    cout << "                  Welcome to MathTutorV4!" << endl;
     cout << "***********************************************************************" << endl;
-    cout << " Parallel lines have so much in common. It's a shame they'll never meet. " << endl;
-    cout << " I'd tell you a joke about infinity, but it would go on forever." << endl;
-    cout << " What do you call a number that can't keep still? A roamin' numeral!" << endl;
+    cout << "  Welcome to the World of Math Wizards           " <<endl;
+    cout << "Maths Fun Facts" <<endl;
+    cout << "* From 0 to 1000, the only number that has the letter 'a' in it is one thousand." <<endl;
+    cout << "* Every odd number has an 'e' in it." <<endl;
+    cout << "* It is always exciting to discover cool ways in which you can use or observe Math in the world." <<endl;
     cout << "***********************************************************************" << endl;
     cout << endl;
 

@@ -22,14 +22,21 @@ Displays whether the user's answer is the correct answer for the math question i
 ## Console Correct Output Example
 ```
 ***********************************************************************
-
-
+#     #                        #######                               #     # #
+##   ##   ##   ##### #    #       #    #    # #####  ####  #####     #     # #    #
+# # # #  #  #    #   #    #       #    #    #   #   #    # #    #    #     # #    #
+#  #  # #    #   #   ######       #    #    #   #   #    # #    #    #     # #    #
+#     # ######   #   #    #       #    #    #   #   #    # #####      #   #  #######
+#     # #    #   #   #    #       #    #    #   #   #    # #   #       # #        #
+#     # #    #   #   #    #       #     ####    #    ####  #    #       #         #
 ***********************************************************************
- Welcome to MathTutorV4!
+                  Welcome to MathTutorV4!
 ***********************************************************************
- Parallel lines have so much in common. It's a shame they'll never meet.
- I'd tell you a joke about infinity, but it would go on forever.
- What do you call a number that can't keep still? A roamin' numeral!
+  Welcome to the World of Math Wizards
+Maths Fun Facts
+* From 0 to 1000, the only number that has the letter 'a' in it is one thousand.
+* Every odd number has an 'e' in it.
+* It is always exciting to discover cool ways in which you can use or observe Math in the world.
 ***********************************************************************
 
 Enter your first and last name:Philipine
