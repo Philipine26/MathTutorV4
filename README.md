@@ -1,5 +1,5 @@
 
-# Math Tutor V3
+# Math Tutor V4
 
 <b>Table of Content</b>
 - [Summary](#summary)
@@ -7,7 +7,7 @@
 - [Maintainers](#maintainers)`
 
 ## Summary
-The Math Tutor program version 3 is an ameliorate code of the version 2.
+The Math Tutor program version 4 is an ameliorate code of the version 3.
 The program executed:
 
 Gets the user's full name using a getline
@@ -120,5 +120,6 @@ Process finished with exit code 0
 
 ## Maintainers
 [@Philipine26](https://github.com/philipine26) Philipine Andjawo
+[@Yamujeeb](https://github.com/Yamujeeb) Mujeeb Adewuyi
 
 [Back to Top](#math-tutor-v3)
