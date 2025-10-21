@@ -1,10 +1,10 @@
 /********************************************************************
 Program Version: MathTutorV3
-Programmers....: Philipine Andjawo
-Section........: Section 3
-Date...........: 2025.10.15
-GitHub Repo: https://github.com/Philipine26/MathVersion3
-Description: The Math Tutor program version 3 is an ameliorate code of the version 2.
+Programmers....: Philipine Andjawo, Mujeeb Adewuyi
+Section........: Section 2
+Date...........: 2025.20.15
+GitHub Repo: https://github.com/Philipine26/MathTutorV4.git
+Description: The Math Tutor program version 4 is an ameliorate code of the version 3.
 The program executed:
 -Gets the user's full name using a getline
 -Generates random numbers and math types
@@ -56,7 +56,7 @@ int main() {
     cout << "#     # #    #   #   #    #       #     ####    #    ####  #    #       #         #  " << endl;
 
     cout << "***********************************************************************" << endl;
-    cout << " Welcome to MathTutorV3!" << endl;
+    cout << " Welcome to MathTutorV4!" << endl;
     cout << "***********************************************************************" << endl;
     cout << " Parallel lines have so much in common. It's a shame they'll never meet. " << endl;
     cout << " I'd tell you a joke about infinity, but it would go on forever." << endl;
