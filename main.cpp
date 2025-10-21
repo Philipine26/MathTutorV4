@@ -23,10 +23,12 @@ The program executed:
 #include <string>
 #include <ctime> //enables use of time() function... ZyBooks 2.19.3
 #include <limits>
+#include <vector>
 
 using namespace std;
 
 int main() {
+    vector<vector<string>> questions; // 2D vector to store question history
     int leftNum = 0;
     int rightNum = 0;
     int mathType = 0; //1,2,3,4
@@ -110,6 +112,13 @@ int main() {
                 return -1;
         } // End of switch statement
 
+        vector<string> row;
+        row.push_back(to_string(mathLevel));
+        row.push_back(to_string(leftNum));
+        row.push_back(string(1, mathSymbol));
+        row.push_back(to_string(rightNum));
+        row.push_back(to_string(correctAns));
+
         for (int i = 1; i <= MAX_ATTEMPTS; i++) {
             cout << "[Level #" << mathLevel << "] " << userName
                     << " What is " << leftNum << " " << mathSymbol << " " << rightNum << " = ";
@@ -125,12 +134,14 @@ int main() {
             //loop to verify if the answer is correct
             if (userAns == correctAns) {
                 cout << "Such a genuis ! Your answer is correct" << endl;
+                row.push_back(to_string(i)); // attempts used
                 totalCorrect++;
                 break;
             } else {
                 if (i == MAX_ATTEMPTS) {
                     cout << " Sorry you are out of attempts" << endl;
                     cout << " The correct answer was: " << correctAns << endl;
+                    row.push_back("0"); // error marker
                     totalIncorrect++;
                     break;
                 } else
@@ -142,7 +153,7 @@ int main() {
                 } //end of if loop to verify the user answer
             } //end of the for loop
 
-
+        questions.push_back(row);
         if (totalCorrect == 3) {
             cout << "Congratulation! You have level up!" << endl;
             mathLevel++;
@@ -164,25 +175,73 @@ int main() {
         getline(cin, userInput); //  clean the newline from the input buffer
 
         // validate y, yes, no, n
-        while (true) {
-            cout << " Do you want to continue ( y=yes | n=no)";
-            getline(cin, userInput); // get the user Input
+      while (true)
+      {
+          cout << "\nDo you want to continue? (y = yes | n = no): ";
+          getline(cin, userInput);
 
-            for (int i = 0; i < userInput.size(); i++) {
-                userInput.at(i) = tolower(userInput.at(i)); // lower the user input
-            } // end of for loop
-            if (userInput == "y" || userInput == "yes" || userInput == "n" || userInput == "no") {
-                if (userInput == "n" || userInput == "no") {
-                    cout << "End of game! " << endl;
-                    cout << "Stay tuned for a new version! ";
-                }
-                break;
-            } else {
-                cout << "Invalid input, please try again..." << endl;
-                cout << endl;
-            } // end of if statement for the user input validation
-        } // end of the inner while to validate y, yes, no, n
-    } // end of the do while loop
+          for (char &c : userInput) c = tolower(c);
+
+          if (userInput == "y" || userInput == "yes") {
+              break;
+          } else if (userInput == "n" || userInput == "no") {
+              // Display summary
+              cout << "\n=================== QUIZ SUMMARY ===================\n";
+              cout << left << setw(10) << "Level"
+                   << setw(10) << "Left"
+                   << setw(10) << "Op"
+                   << setw(10) << "Right"
+                   << setw(10) << "Answer"
+                   << setw(10) << "Result" << endl;
+              cout << "----------------------------------------------------\n";
+
+              int correctAnswers = 0;
+              int incorrectAnswers = 0;
+
+              for (const auto& row : questions) {
+                  string level = row[0];
+                  string l = row[1];
+                  string op = row[2];
+                  string r = row[3];
+                  string ans = row[4];
+                  string attempt = row[5];
+
+                  cout << left << setw(10) << level
+                       << setw(10) << l
+                       << setw(10) << op
+                       << setw(10) << r
+                       << setw(10) << ans;
+
+                  if (attempt != "0") {
+                      cout << setw(10) << (attempt + " try");
+                      correctAnswers++;
+                  } else {
+                      cout << setw(10) << "Incorrect";
+                      incorrectAnswers++;
+                  }
+
+                  cout << endl;
+              }
+
+              int total = correctAnswers + incorrectAnswers;
+              int average = (total > 0) ? (correctAnswers * 100 / total) : 0;
+
+              cout << "\n----------------------------------------------------\n";
+              cout << "Total Questions: " << total << endl;
+              cout << "Correct Answers: " << correctAnswers << endl;
+              cout << "Incorrect Answers: " << incorrectAnswers << endl;
+              cout << "Score:           " << average << "%\n";
+              cout << "====================================================\n";
+              cout << "Thanks for playing, " << userName << "! Come back soon.\n";
+              return 0;
+          } else {
+              cout << "Invalid input. Please enter 'y' or 'n'.\n";
+          }
+      }
+      } // end of the do while loop
     while (userInput == "yes" || userInput == "y");
+
+
+        return 0;
 
 }
