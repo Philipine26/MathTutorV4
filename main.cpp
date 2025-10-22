@@ -85,19 +85,19 @@ int main() {
                 mathSymbol = '+';
                 correctAns = leftNum + rightNum;
                 break;
+
             case 2:
                 mathSymbol = '-';
-                if (leftNum < rightNum) {
-                    temp = leftNum;
-                    leftNum = rightNum;
-                    rightNum = temp;
-                }
-                correctAns = leftNum - rightNum;
-                break;
+            if (leftNum < rightNum)
+                swap(leftNum, rightNum);
+            correctAns = leftNum - rightNum;
+            break;
+
             case 3:
                 mathSymbol = '*';
                 correctAns = leftNum * rightNum;
                 break;
+
             case 4:
                 mathSymbol = '/';
                 if (rightNum == 0) {
@@ -105,6 +105,7 @@ int main() {
                 }
                 correctAns = leftNum / rightNum;
                 break;
+
             default:
                 cout << "Error! " << mathType << " is not a valid input!" << endl;
                 cout << "-1" << endl;
