@@ -28,7 +28,7 @@ The program executed:
 using namespace std;
 
 int main() {
-    vector<vector<string>> questions; // 2D vector to store question history
+    vector<vector<int>> questions; // 2D vector to store question history
     int leftNum = 0;
     int rightNum = 0;
     int mathType = 0; //1,2,3,4
@@ -113,12 +113,7 @@ int main() {
                 return -1;
         } // End of switch statement
 
-        vector<string> row;
-        row.push_back(to_string(mathLevel));
-        row.push_back(to_string(leftNum));
-        row.push_back(string(1, mathSymbol));
-        row.push_back(to_string(rightNum));
-        row.push_back(to_string(correctAns));
+        vector<int> row = {mathLevel, leftNum, mathSymbol, rightNum, correctAns};
 
         for (int i = 1; i <= MAX_ATTEMPTS; i++) {
             cout << "[Level #" << mathLevel << "] " << userName
@@ -135,14 +130,14 @@ int main() {
             //loop to verify if the answer is correct
             if (userAns == correctAns) {
                 cout << "Such a genuis ! Your answer is correct" << endl;
-                row.push_back(to_string(i)); // attempts used
+                row.push_back(i); // attempts used
                 totalCorrect++;
                 break;
             } else {
                 if (i == MAX_ATTEMPTS) {
                     cout << " Sorry you are out of attempts" << endl;
                     cout << " The correct answer was: " << correctAns << endl;
-                    row.push_back("0"); // error marker
+                    row.push_back(0); // error marker
                     totalIncorrect++;
                     break;
                 } else
@@ -200,12 +195,12 @@ int main() {
               int incorrectAnswers = 0;
 
               for (const auto& row : questions) {
-                  string level = row[0];
-                  string l = row[1];
-                  string op = row[2];
-                  string r = row[3];
-                  string ans = row[4];
-                  string attempt = row[5];
+                 int level = row[0];
+                  int l = row[1];
+                  int op = row[2];
+                  int r = row[3];
+                  int ans = row[4];
+                  int attempt = row[5];
 
                   cout << left << setw(10) << level
                        << setw(10) << l
@@ -213,7 +208,7 @@ int main() {
                        << setw(10) << r
                        << setw(10) << ans;
 
-                  if (attempt != "0") {
+                  if (attempt != 0) {
                       cout << setw(10) << (attempt + " try");
                       correctAnswers++;
                   } else {
