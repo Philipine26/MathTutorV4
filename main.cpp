@@ -183,43 +183,36 @@ int main() {
           } else if (userInput == "n" || userInput == "no") {
               // Display summary
               cout << "\n=================== QUIZ SUMMARY ===================\n";
-              cout << left << setw(10) << "Level"
-                   << setw(10) << "Left"
-                   << setw(10) << "Op"
-                   << setw(10) << "Right"
-                   << setw(10) << "Answer"
-                   << setw(10) << "Result" << endl;
+              cout << left << setw(10) << "Level" << "|"
+                   << setw(10) << " Question" << "|";
+              cout << right << setw(10) << "Attempts" << endl;
               cout << "----------------------------------------------------\n";
 
-              int correctAnswers = 0;
-              int incorrectAnswers = 0;
 
-              for (const auto& row : questions) {
-                 int level = row[0];
-                  int l = row[1];
-                  int op = row[2];
-                  int r = row[3];
-                  int ans = row[4];
-                  int attempt = row[5];
+              for (int i= 0; i< questions.size(); i++) {
+                  mathLevel = questions.at(i).at(0);
+                  leftNum = questions.at(i).at(1);
+                  mathSymbol = static_cast<char>(questions.at(i).at(2));
+                  rightNum = questions.at(i).at(3);
+                  correctAns = questions.at(i).at(4);
 
-                  cout << left << setw(10) << level
-                       << setw(10) << l
-                       << setw(10) << op
-                       << setw(10) << r
-                       << setw(10) << ans;
+                  cout << " " << setw(2) << right << mathLevel << " "
+                         << setw(3) << right << leftNum << " "
+                            << mathSymbol << " ";
+                  int attempt = totalCorrect + totalIncorrect;
 
                   if (attempt != 0) {
-                      cout << setw(10) << (attempt + " try");
-                      correctAnswers++;
+                      cout << setw(10) << attempt << endl;
+                      ;
                   } else {
                       cout << setw(10) << "Incorrect";
-                      incorrectAnswers++;
+                      ;
                   }
 
                   cout << endl;
               }
-
-              int total = correctAnswers + incorrectAnswers;
+          }
+             /* int total = correctAnswers + incorrectAnswers;
               int average = (total > 0) ? (correctAnswers * 100 / total) : 0;
 
               cout << "\n----------------------------------------------------\n";
@@ -232,7 +225,7 @@ int main() {
               return 0;
           } else {
               cout << "Invalid input. Please enter 'y' or 'n'.\n";
-          }
+          }*/
       }
       } // end of the do while loop
     while (userInput == "yes" || userInput == "y");
