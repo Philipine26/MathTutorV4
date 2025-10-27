@@ -14,6 +14,7 @@ The program executed:
 -Level the user up if the count of correct answer is 3. if not leveling him down
 -Handling wrong answer error
 -Displays whether the user's answer is the correct answer for the math question if he got the answer wrong
+-Showing a well detailed summary of performance showing the amount of questions answered correctly and incorrectly with the grade at the end
 *********************************************************************/
 
 #include <iostream> // inclusion required for cin and cout
@@ -35,11 +36,16 @@ int main() {
     char mathSymbol = '?'; //+,-,*,/
     int correctAns; //correct answer variable
     int userAns = 0; // user answer variable
-    int temp = 0; //
+    int temp = 0;
     int totalCorrect = 0;
     int totalIncorrect = 0;
     int mathLevel = 1;
-    enum MathType { MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4 };
+
+    enum MathType {
+        MT_ADD = 1,
+        MT_SUB = 2,
+        MT_MUL = 3,
+        MT_DIV = 4 };
     MathType mathtype = MT_ADD; // store the mathtype
 
     string userInput = "y";
@@ -68,10 +74,10 @@ int main() {
     cout << "***********************************************************************" << endl;
     cout << endl;
 
-    cout << "Enter your first and last name: ";
+    cout << "Please enter your first and last name: ";
     getline(cin, userName); // Gets the user's full name
     cout << endl;
-    cout << "Hi, " << userName << " can you answer this question ?";
+    cout << "Welcome to our mini-space, " << userName << " can you answer this question ?";
     cout << endl;
 
     do {
@@ -130,7 +136,7 @@ int main() {
             //loop to verify if the answer is correct
             if (userAns == correctAns) {
                 cout << "Such a genuis ! Your answer is correct" << endl;
-                row.push_back(i); // attempts used
+                row.push_back(i); // Number of attempts used
                 totalCorrect++;
                 break;
             } else {
@@ -181,7 +187,7 @@ int main() {
           if (userInput == "y" || userInput == "yes") {
               break;
           } else if (userInput == "n" || userInput == "no") {
-              // Display summary
+              // Display summary report
               cout << "\n=================== QUIZ SUMMARY ===================\n";
               cout << left << setw(10) << "Level" << "|"
                    << setw(10) << " Question" << "|";
@@ -189,7 +195,8 @@ int main() {
               cout << "----------------------------------------------------\n";
 
 
-              for (int i= 0; i< questions.size(); i++) {
+              for (int i= 0; i< questions.size(); i++)
+              {
                   mathLevel = questions.at(i).at(0);
                   leftNum = questions.at(i).at(1);
                   mathSymbol = static_cast<char>(questions.at(i).at(2));
@@ -203,10 +210,8 @@ int main() {
 
                   if (attempt != 0) {
                       cout << setw(10) << attempt << endl;
-                      ;
                   } else {
                       cout << setw(10) << "Incorrect";
-                      ;
                   }
 
                   cout << endl;
