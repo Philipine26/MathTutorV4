@@ -17,40 +17,40 @@ The program executed:
 *********************************************************************/
 
 #include <iostream> // inclusion required for cin and cout
-#include <iomanip>
-#include <cctype>
-#include <cmath>
-#include <string>
-#include <ctime> //enables use of time() function... ZyBooks 2.19.3
-#include <limits>
-#include <vector>
+#include <iomanip> // inclusion required for setw and other formatting functions
+#include <cctype> // inclusion required for tolower function
+#include <string> // inclusion required for string operations
+#include <ctime> // enables use of time() function... ZyBooks 2.19.3
+#include <limits> // inclusion required for numeric_limits
+#include <vector> // inclusion required for vector container
 
-using namespace std;
+
+using namespace std;  // Allows usage of standard library names without the std:: prefix
 
 int main() {
     vector<vector<int> > questions; // 2D vector to store question history
-    int leftNum = 0;
-    int rightNum = 0;
-    int mathType = 0; //1,2,3,4
+    int leftNum = 0; // Left operand in math questions
+    int rightNum = 0;  // Right operand in math question
+    int mathType = 0; // Holds type of math operation (1-4)
     char mathSymbol = '?'; //+,-,*,/
     int correctAns; //correct answer variable
     int userAns = 0; // user answer variable
-    int temp = 0; //
-    int totalCorrect = 0;
-    int totalIncorrect = 0;
+    int temp = 0;
+    int totalCorrect = 0;  // Counts total correct answers
+    int totalIncorrect = 0;  // Counts total incorrect answers
     int incorrectAns = 0;
-    int mathLevel = 1;
-    int attempt = 0;
-    int total = 0;
-    int average = 0;
+    int mathLevel = 1;  // Tracks current math difficulty level
+    int attempt = 0; // Tracks current attempt number for a question
+    int total = 0; // Sum accumulator for various purposes
+    int average = 0; // Stores calculated average
     enum MathType { MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4 };
     MathType mathtype = MT_ADD; // store the mathtype
 
-    string userInput = "y";
-    string userName = "unknown";
-    const int MAX_ATTEMPTS = 3;
-    const int LEVEL_RANGE_CHANGE = 10;
-    int currentRange = LEVEL_RANGE_CHANGE;
+    string userInput = "y";  // Stores user input for continuation
+    string userName = "unknown"; // Stores user's name
+    const int MAX_ATTEMPTS = 3; // Maximum allowed attempts for each question
+    const int LEVEL_RANGE_CHANGE = 10;  // Value by which range increases per level
+    int currentRange = LEVEL_RANGE_CHANGE; // Stores current range for random number generation
 
     srand(time(0)); // Allows for a unique seed for each program run (ZyBooks2.19.3)
     cout << "#     #                        #######                               #     # #      " << endl;
@@ -87,19 +87,19 @@ int main() {
         {
             case 1:
                 mathSymbol = '+';
-                correctAns = leftNum + rightNum;
+                correctAns = leftNum + rightNum; // Add the two numbers
                 break;
 
             case 2:
                 mathSymbol = '-';
                 if (leftNum < rightNum)
                     swap(leftNum, rightNum);
-                correctAns = leftNum - rightNum;
+                correctAns = leftNum - rightNum; // Substract the two numbers when the first one is positive
                 break;
 
             case 3:
                 mathSymbol = '*';
-                correctAns = leftNum * rightNum;
+                correctAns = leftNum * rightNum; // Multiply the two numbers
                 break;
 
             case 4:
@@ -107,7 +107,7 @@ int main() {
                 if (rightNum == 0) {
                     rightNum = (rand() % currentRange) + 1;
                 }
-                correctAns = leftNum / rightNum;
+                correctAns = leftNum / rightNum; // Divide the two numbers
                 break;
 
             default:
@@ -117,11 +117,11 @@ int main() {
                 return -1;
         } // End of switch statement
 
-        vector<int> row = {mathLevel, leftNum, mathSymbol, rightNum, correctAns};
+        vector<int> row = {mathLevel, leftNum, mathSymbol, rightNum, correctAns}; // create the first vector
 
         for (int i = 1; i <= MAX_ATTEMPTS; i++) {
             cout << "[Level #" << mathLevel << "] " << userName
-                    << " What is " << leftNum << " " << mathSymbol << " " << rightNum << " = ";
+                    << " What is " << leftNum << " " << mathSymbol << " " << rightNum << " = "; // Ask the user a question
 
             //Loop until the user enters numeric data
             while (!(cin >> userAns)) {
@@ -135,14 +135,14 @@ int main() {
             if (userAns == correctAns) {
                 cout << "Such a genuis ! Your answer is correct" << endl;
                 row.push_back(i); // attempts used
-                totalCorrect++;
+                totalCorrect++; //Increment the total Correct
                 break;
             } else {
                 if (i == MAX_ATTEMPTS) {
                     cout << " Sorry you are out of attempts" << endl;
                     cout << " The correct answer was: " << correctAns << endl;
                     row.push_back(0); // error marker
-                    totalIncorrect++;
+                    totalIncorrect++; // Increment the total Incorrect
                     break;
                 } else {
                     cout << " Well, that was incorrect! " << endl;
@@ -152,21 +152,22 @@ int main() {
             } //end of if loop to verify the user answer
         } //end of the for loop
 
-        questions.push_back(row);
+        questions.push_back(row); // Add the row vector as attempt in the questions vector.
         if (totalCorrect == 3) {
             cout << "Congratulation! You have level up!" << endl;
-            mathLevel++;
-            totalCorrect = 0;
-            totalIncorrect = 0;
-            currentRange += LEVEL_RANGE_CHANGE;
+            mathLevel++; // Increment the mathLevel when the user have answer 3 correct answers.
+            totalCorrect = 0; // reinitialize totalCorrect
+            totalIncorrect = 0; // reinitialize totalIncorrect
+            currentRange += LEVEL_RANGE_CHANGE; // Add more to currentRange
             cout << " You are on level #" << mathLevel << "!" << endl;
             cout << "Your new range of play is: " << currentRange << endl;
         } // end of if loop
         else if (totalIncorrect == 3 && mathLevel > 1) {
-            mathLevel--;
-            totalCorrect = 0;
-            totalIncorrect = 0;
-            currentRange -= LEVEL_RANGE_CHANGE;
+            mathLevel--; // Decrement the mathLevel when the user have answer 3 incorrect answers,
+            //and the level is higher than 1.
+            totalCorrect = 0; // reinitialize totalCorrect
+            totalIncorrect = 0; // reinitialize totalIncorrect
+            currentRange -= LEVEL_RANGE_CHANGE; // substract more to currentRange
             cout << " You are on level #" << mathLevel << "!" << endl;
             cout << "Your new range of play is: " << currentRange << endl;
         } // end of else if loop
@@ -178,12 +179,12 @@ int main() {
             cout << "\nDo you want to continue? (y = yes | n = no): ";
             getline(cin, userInput);
 
-            for (char &c: userInput) c = tolower(c);
+            for (char &c: userInput) c = tolower(c); // lowercase the user input
 
-            if (userInput == "y" || userInput == "yes" || userInput == "n" || userInput == "no") {
+            if (userInput == "y" || userInput == "yes" || userInput == "n" || userInput == "no") { // Compare the user input
                 break;
             } else {
-                cout << "Invalid input. Please enter 'y' or 'n'.\n";
+                cout << "Invalid input. Please enter 'y' or 'n'.\n"; // Handle input mistakes
             } //end of else
             //end of for
         }
@@ -197,23 +198,23 @@ int main() {
     cout << right << setw(10) << "Attempts" << endl;
     cout << "----------------------------------------------------\n";
 
-    totalCorrect = 0;
-    totalIncorrect = 0;
+    totalCorrect = 0; // totalCorrect reinitialization
+    totalIncorrect = 0; //totalIncorrect reinitialization
 
     for (int i = 0; i < questions.size(); i++) {
-        mathLevel = questions.at(i).at(0);
-        leftNum = questions.at(i).at(1);
-        mathSymbol = static_cast<char>(questions.at(i).at(2));
-        rightNum = questions.at(i).at(3);
-        correctAns = questions.at(i).at(4);
-        attempt = questions.at(i).at(5);
+        mathLevel = questions.at(i).at(0); // Retrieve the values  of mathLevel from the 2D vector
+        leftNum = questions.at(i).at(1); // Retrieve the values of leftNum from the 2D vector
+        mathSymbol = static_cast<char>(questions.at(i).at(2)); // Retrieve the values of mathSymbol from the 2D vector
+        rightNum = questions.at(i).at(3); // Retrieve the values of rightNum from the 2D vector
+        correctAns = questions.at(i).at(4); // Retrieve the values of correctAns from the 2D vector
+        attempt = questions.at(i).at(5); // Retrieve the values of attempt from the 2D vector
 
         cout << " " << setw(2) << right << mathLevel << " "
-                << setw(8) << right << leftNum << " "
+                << setw(8) << right << leftNum << " " // display the question and answer
                 << mathSymbol << " " << rightNum << " " << "="<< " " << correctAns << setw(2);
 
         if (attempt != 0) {
-            cout << setw(8) << attempt;
+            cout << setw(8) << attempt; //display the number attempts per question
             totalCorrect++;
         } //end of if
         else {
@@ -224,8 +225,8 @@ int main() {
         cout << endl;
     } // end of for loop
 
-    total = questions.size();
-    average = (total > 0) ? (totalCorrect * 100 / total) : 0;
+    total = questions.size(); // get the total of questions
+    average = (total > 0) ? (totalCorrect * 100 / total) : 0; // Get the average
 
     cout << "\n----------------------------------------------------\n";
     cout << "Total Questions: " << total << endl;
