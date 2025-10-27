@@ -38,6 +38,7 @@ int main() {
     int temp = 0; //
     int totalCorrect = 0;
     int totalIncorrect = 0;
+    int incorrectAns = 0;
     int mathLevel = 1;
     int attempt = 0;
     int total = 0;
@@ -74,7 +75,7 @@ int main() {
     cout << "Enter your first and last name: ";
     getline(cin, userName); // Gets the user's full name
     cout << endl;
-    cout << "Hi, " << userName << " can you answer this question ?";
+    cout << "Hi, " << userName << "Let's test your math skills!";
     cout << endl;
 
     do {
@@ -196,9 +197,6 @@ int main() {
     cout << right << setw(10) << "Attempts" << endl;
     cout << "----------------------------------------------------\n";
 
-    int correctAnswers = 0;
-    int incorrectAnswers = 0;
-
     for (int i = 0; i < questions.size(); i++) {
         mathLevel = questions.at(i).at(0);
         leftNum = questions.at(i).at(1);
@@ -213,23 +211,23 @@ int main() {
 
         if (attempt != 0) {
             cout << setw(10) << attempt << endl;
-            correctAnswers++;
+            correctAns++;
         } //end of if
         else {
             cout << setw(10) << "Incorrect";
-            incorrectAnswers++;
+            incorrectAns++;
         } //end of else
 
         cout << endl;
     } // end of for loop
 
-    total = correctAnswers + incorrectAnswers;
-    average = (total > 0) ? (correctAnswers * 100 / total) : 0;
+    total = correctAns + incorrectAns;
+    average = (total > 0) ? (correctAns * 100 / total) : 0;
 
     cout << "\n----------------------------------------------------\n";
     cout << "Total Questions: " << total << endl;
-    cout << "Correct Answers: " << correctAnswers << endl;
-    cout << "Incorrect Answers: " << incorrectAnswers << endl;
+    cout << "Correct Answers: " << correctAns << endl;
+    cout << "Incorrect Answers: " << incorrectAns << endl;
     cout << "Score:           " << average << "%\n";
     cout << "====================================================\n";
     cout << "Thanks for playing, " << userName << "! Come back soon.\n";
