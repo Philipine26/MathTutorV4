@@ -197,6 +197,9 @@ int main() {
     cout << right << setw(10) << "Attempts" << endl;
     cout << "----------------------------------------------------\n";
 
+    totalCorrect = 0;
+    totalIncorrect = 0;
+
     for (int i = 0; i < questions.size(); i++) {
         mathLevel = questions.at(i).at(0);
         leftNum = questions.at(i).at(1);
@@ -206,28 +209,28 @@ int main() {
         attempt = questions.at(i).at(5);
 
         cout << " " << setw(2) << right << mathLevel << " "
-                << setw(10) << right << leftNum << " "
-                << mathSymbol << " " << rightNum << " ";
+                << setw(16) << right << leftNum << " "
+                << mathSymbol << " " << rightNum << " " << "="<< " " << correctAns;;
 
         if (attempt != 0) {
-            cout << setw(10) << attempt << endl;
-            correctAns++;
+            cout << setw(6) << attempt;
+            totalCorrect++;
         } //end of if
         else {
             cout << setw(10) << "Incorrect";
-            incorrectAns++;
+            totalIncorrect++;
         } //end of else
 
         cout << endl;
     } // end of for loop
 
-    total = correctAns + incorrectAns;
-    average = (total > 0) ? (correctAns * 100 / total) : 0;
+    total = questions.size();
+    average = (total > 0) ? (totalCorrect * 100 / total) : 0;
 
     cout << "\n----------------------------------------------------\n";
     cout << "Total Questions: " << total << endl;
-    cout << "Correct Answers: " << correctAns << endl;
-    cout << "Incorrect Answers: " << incorrectAns << endl;
+    cout << "Correct Answers: " << totalCorrect << endl;
+    cout << "Incorrect Answers: " << totalIncorrect << endl;
     cout << "Score:           " << average << "%\n";
     cout << "====================================================\n";
     cout << "Thanks for playing, " << userName << "! Come back soon.\n";
