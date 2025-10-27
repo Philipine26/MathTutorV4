@@ -195,7 +195,7 @@ int main() {
     cout << "\n=================== QUIZ SUMMARY ===================\n";
     cout << left << setw(10) << "Level" << "|"
             << setw(10) << " Question" << "|";
-    cout << right << setw(10) << "Attempts" << endl;
+    cout << right << setw(15) << "Attempts" << endl;
     cout << "----------------------------------------------------\n";
 
     totalCorrect = 0; // totalCorrect reinitialization
@@ -214,11 +214,11 @@ int main() {
                 << mathSymbol << " " << rightNum << " " << "="<< " " << correctAns << setw(2);
 
         if (attempt != 0) {
-            cout << setw(8) << attempt; //display the number attempts per question
+            cout << setw(10) << attempt; //display the number attempts per question
             totalCorrect++;
         } //end of if
         else {
-            cout << setw(10) << "Incorrect";
+            cout << setw(12) << "Incorrect";
             totalIncorrect++;
         } //end of else
 
@@ -232,7 +232,7 @@ int main() {
     cout << "Total Questions: " << total << endl;
     cout << "Correct Answers: " << totalCorrect << endl;
     cout << "Incorrect Answers: " << totalIncorrect << endl;
-    cout << "Score:           " << average << "%\n";
+    cout << "Score: " << average << "%\n";
     cout << "====================================================\n";
     cout << "Thanks for playing, " << userName << "! Come back soon.\n";
     return 0;
