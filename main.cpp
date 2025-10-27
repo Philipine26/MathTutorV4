@@ -209,11 +209,11 @@ int main() {
         attempt = questions.at(i).at(5);
 
         cout << " " << setw(2) << right << mathLevel << " "
-                << setw(16) << right << leftNum << " "
-                << mathSymbol << " " << rightNum << " " << "="<< " " << correctAns;;
+                << setw(8) << right << leftNum << " "
+                << mathSymbol << " " << rightNum << " " << "="<< " " << correctAns << setw(2);
 
         if (attempt != 0) {
-            cout << setw(6) << attempt;
+            cout << setw(8) << attempt;
             totalCorrect++;
         } //end of if
         else {
