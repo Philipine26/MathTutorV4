@@ -14,6 +14,8 @@ The program executed:
 -Level the user up if the count of correct answer is 3. if not leveling him down
 -Handling wrong answer error
 -Displays whether the user's answer is the correct answer for the math question if he got the answer wrong
+-Generate a summary table for the user after completing the  questions and decided to leave by answering N or NO.
+-Gives user amount of questions answered correctly and incorrectly, with number of questions asked, and also the percentage over 100.
 *********************************************************************/
 
 #include <iostream> // inclusion required for cin and cout
@@ -60,7 +62,6 @@ int main() {
     cout << "#     # ######   #   #    #       #    #    #   #   #    # #####      #   #  #######" << endl;
     cout << "#     # #    #   #   #    #       #    #    #   #   #    # #   #       # #        # " << endl;
     cout << "#     # #    #   #   #    #       #     ####    #    ####  #    #       #         #  " << endl;
-
     cout << "***********************************************************************" << endl;
     cout << "                  Welcome to MathTutorV4!" << endl;
     cout << "***********************************************************************" << endl;
@@ -133,7 +134,7 @@ int main() {
 
             //loop to verify if the answer is correct
             if (userAns == correctAns) {
-                cout << "Such a genuis ! Your answer is correct" << endl;
+                cout << "congratulations!!!! Your answer is correct" << endl;
                 row.push_back(i); // attempts used
                 totalCorrect++; //Increment the total Correct
                 break;
