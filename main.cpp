@@ -207,7 +207,7 @@ int main() {
         correctAns = questions.at(i).at(4);
         attempt = questions.at(i).at(5);
 
-        cout << " " << setw(10) << right << mathLevel << " "
+        cout << " " << setw(2) << right << mathLevel << " "
                 << setw(10) << right << leftNum << " "
                 << mathSymbol << " " << rightNum << " ";
 
