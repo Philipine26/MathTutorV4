@@ -28,7 +28,7 @@ The program executed:
 using namespace std;
 
 int main() {
-    vector<vector<int>> questions; // 2D vector to store question history
+    vector<vector<int> > questions; // 2D vector to store question history
     int leftNum = 0;
     int rightNum = 0;
     int mathType = 0; //1,2,3,4
@@ -40,6 +40,8 @@ int main() {
     int totalIncorrect = 0;
     int mathLevel = 1;
     int attempt = 0;
+    int total = 0;
+    int average = 0;
     enum MathType { MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4 };
     MathType mathtype = MT_ADD; // store the mathtype
 
@@ -61,11 +63,11 @@ int main() {
     cout << "***********************************************************************" << endl;
     cout << "                  Welcome to MathTutorV4!" << endl;
     cout << "***********************************************************************" << endl;
-    cout << "  Welcome to the World of Math Wizards           " <<endl;
-    cout << "Maths Fun Facts" <<endl;
-    cout << "* From 0 to 1000, the only number that has the letter 'a' in it is one thousand." <<endl;
-    cout << "* Every odd number has an 'e' in it." <<endl;
-    cout << "* It is always exciting to discover cool ways in which you can use or observe Math in the world." <<endl;
+    cout << "  Welcome to the World of Math Wizards           " << endl;
+    cout << "Maths Fun Facts" << endl;
+    cout << "* From 0 to 1000, the only number that has the letter 'a' in it is one thousand." << endl;
+    cout << "* Every odd number has an 'e' in it." << endl;
+    cout << "* It is always exciting to discover cool ways in which you can use or observe Math in the world." << endl;
     cout << "***********************************************************************" << endl;
     cout << endl;
 
@@ -141,10 +143,9 @@ int main() {
                     row.push_back(0); // error marker
                     totalIncorrect++;
                     break;
-                } else
-                {
+                } else {
                     cout << " Well, that was incorrect! " << endl;
-                    cout << " Fortunately, you still have " << MAX_ATTEMPTS -i << " attempts." << endl;
+                    cout << " Fortunately, you still have " << MAX_ATTEMPTS - i << " attempts." << endl;
                     totalIncorrect++;
                 }
             } //end of if loop to verify the user answer
@@ -176,65 +177,61 @@ int main() {
             cout << "\nDo you want to continue? (y = yes | n = no): ";
             getline(cin, userInput);
 
-            for (char &c : userInput) c = tolower(c);
+            for (char &c: userInput) c = tolower(c);
 
-            if (userInput == "y" || userInput == "yes") {
+            if (userInput == "y" || userInput == "yes" || userInput == "n" || userInput == "no") {
                 break;
-            } else
-                if (userInput == "n" || userInput == "no") {
-                    // Display summary
-                    cout << "\n=================== QUIZ SUMMARY ===================\n";
-                    cout << left << setw(10) << "Level" << "|"
-                         << setw(10) << " Question" << "|";
-                    cout << right << setw(10) << "Attempts" << endl;
-                    cout << "----------------------------------------------------\n";
+            } else {
+                cout << "Invalid input. Please enter 'y' or 'n'.\n";
+            } //end of else
+            //end of for
+        }
+    } // end of the do while loop
+    while (userInput == "yes" || userInput == "y");
 
-                    int correctAnswers = 0;
-                    int incorrectAnswers = 0;
+    // Display summary
+    cout << "\n=================== QUIZ SUMMARY ===================\n";
+    cout << left << setw(10) << "Level" << "|"
+            << setw(10) << " Question" << "|";
+    cout << right << setw(10) << "Attempts" << endl;
+    cout << "----------------------------------------------------\n";
 
-                    for (int i= 0; i< questions.size(); i++) {
-                        mathLevel = questions.at(i).at(0);
-                        leftNum = questions.at(i).at(1);
-                        mathSymbol = static_cast<char>(questions.at(i).at(2));
-                        rightNum = questions.at(i).at(3);
-                        correctAns = questions.at(i).at(4);
-                        attempt = questions.at(i).at(5);
+    int correctAnswers = 0;
+    int incorrectAnswers = 0;
 
-                        cout << " " << setw(10) << right << mathLevel << " "
-                               << setw(10) << right << leftNum << " "
-                                  << mathSymbol << " " << rightNum << " ";
+    for (int i = 0; i < questions.size(); i++) {
+        mathLevel = questions.at(i).at(0);
+        leftNum = questions.at(i).at(1);
+        mathSymbol = static_cast<char>(questions.at(i).at(2));
+        rightNum = questions.at(i).at(3);
+        correctAns = questions.at(i).at(4);
+        attempt = questions.at(i).at(5);
 
-                        if (attempt != 0) {
-                            cout << setw(10) << attempt << endl;
-                            correctAnswers++;
-                        }
-                        else {
-                            cout << setw(10) << "Incorrect";
-                            incorrectAnswers++;
-                        }
+        cout << " " << setw(10) << right << mathLevel << " "
+                << setw(10) << right << leftNum << " "
+                << mathSymbol << " " << rightNum << " ";
 
-                        cout << endl;
+        if (attempt != 0) {
+            cout << setw(10) << attempt << endl;
+            correctAnswers++;
+        } //end of if
+        else {
+            cout << setw(10) << "Incorrect";
+            incorrectAnswers++;
+        } //end of else
 
-                        int total = correctAnswers + incorrectAnswers;
-                        int average = (total > 0) ? (correctAnswers * 100 / total) : 0;
+        cout << endl;
+    } // end of for loop
 
-                        cout << "\n----------------------------------------------------\n";
-                        cout << "Total Questions: " << total << endl;
-                        cout << "Correct Answers: " << correctAnswers << endl;
-                        cout << "Incorrect Answers: " << incorrectAnswers << endl;
-                        cout << "Score:           " << average << "%\n";
-                        cout << "====================================================\n";
-                        cout << "Thanks for playing, " << userName << "! Come back soon.\n";
-                        return 0;
-                    }
-                    else {
-                        cout << "Invalid input. Please enter 'y' or 'n'.\n";
-                    }
-                }
+    total = correctAnswers + incorrectAnswers;
+    average = (total > 0) ? (correctAnswers * 100 / total) : 0;
 
-        } // end of the do while loop
-        while (userInput == "yes" || userInput == "y");
-
-
-        return 0;
-    }
+    cout << "\n----------------------------------------------------\n";
+    cout << "Total Questions: " << total << endl;
+    cout << "Correct Answers: " << correctAnswers << endl;
+    cout << "Incorrect Answers: " << incorrectAnswers << endl;
+    cout << "Score:           " << average << "%\n";
+    cout << "====================================================\n";
+    cout << "Thanks for playing, " << userName << "! Come back soon.\n";
+    return 0;
+}
