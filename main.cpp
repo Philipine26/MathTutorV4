@@ -42,7 +42,7 @@ int main() {
     int totalIncorrect = 0;  // Counts total incorrect answers
     int incorrectAns = 0;
     int mathLevel = 1;  // Tracks current math difficulty level
-    int attempt = 0; // Tracks current attempt number for a question
+    int attempts = 0; // Tracks current attempt number for a question
     int total = 0; // Sum accumulator for various purposes
     int average = 0; // Stores calculated average
     enum MathType { MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4 };
@@ -192,49 +192,43 @@ int main() {
     } // end of the do while loop
     while (userInput == "yes" || userInput == "y");
 
-    // Display summary
-    cout << "\n=================== QUIZ SUMMARY ===================\n";
-    cout << left << setw(10) << "Level" << "|"
-            << setw(10) << " Question" << "|";
-    cout << right << setw(15) << "Attempts" << endl;
-    cout << "----------------------------------------------------\n";
+    //summary
+    cout << "===================================" << endl;
+    cout << "          " << "Overall Summary" << endl;
+    cout << "===================================" << endl;
+    cout << "Level" << "       Question" << "       Attempts" << endl;
+    cout << "-----     ------------    ----------" << endl;
 
-    totalCorrect = 0; // totalCorrect reinitialization
-    totalIncorrect = 0; //totalIncorrect reinitialization
-
+    // outputs the level, questions, and attempts
     for (int i = 0; i < questions.size(); i++) {
-        mathLevel = questions.at(i).at(0); // Retrieve the values  of mathLevel from the 2D vector
-        leftNum = questions.at(i).at(1); // Retrieve the values of leftNum from the 2D vector
-        mathSymbol = static_cast<char>(questions.at(i).at(2)); // Retrieve the values of mathSymbol from the 2D vector
-        rightNum = questions.at(i).at(3); // Retrieve the values of rightNum from the 2D vector
-        correctAns = questions.at(i).at(4); // Retrieve the values of correctAns from the 2D vector
-        attempt = questions.at(i).at(5); // Retrieve the values of attempt from the 2D vector
+        mathLevel = questions.at(i).at(0);
+        leftNum = questions.at(i).at(1);
+        mathSymbol = static_cast<char>(questions.at(i).at(2)); // converts the stored int into a char
+        rightNum = questions.at(i).at(3);
+        correctAns = questions.at(i).at(4);
+        attempts = questions.at(i).at(5);
 
-        cout << " " << setw(2) << right << mathLevel << " "
-                << setw(8) << right << leftNum << " " // display the question and answer
-                << mathSymbol << " " << rightNum << " " << "="<< " " << correctAns << setw(2);
+        cout << " " << setw(2) << right << mathLevel << "    " << setw(3) << right << leftNum
+                << " " << mathSymbol << " " << setw(3) << left << rightNum << " = " << setw(3) << right
+                << correctAns << "    ";
 
-        if (attempt != 0) {
-            cout << setw(10) << attempt; //display the number attempts per question
+        // output number of attempts
+        if (attempts != 0) {
+            cout << "    " << attempts << endl;
             totalCorrect++;
-        } //end of if
+        }
+        // output incorrect if 0 is stored
         else {
-            cout << setw(12) << "Incorrect";
+            cout << "Incorrect" << endl;
             totalIncorrect++;
-        } //end of else
+        }
+    }
 
-        cout << endl;
-    } // end of for loop
-
-    total = questions.size(); // get the total of questions
-    average = (total > 0) ? (totalCorrect * 100 / total) : 0; // Get the average
-
-    cout << "\n----------------------------------------------------\n";
-    cout << "Total Questions: " << total << endl;
-    cout << "Correct Answers: " << totalCorrect << endl;
-    cout << "Incorrect Answers: " << totalIncorrect << endl;
-    cout << "Score: " << average << "%\n";
-    cout << "====================================================\n";
+    //output totals
+    cout << "Total Questions: " << setw(3) << right << questions.size() << endl;
+    cout << "Total Correct  : " << setw(3) << right << totalCorrect << endl;
+    cout << "Total Incorrect: " << setw(3) << right << totalIncorrect << endl;
+    cout << "Average Correct: " << setw(3) << right << (totalCorrect * 100) / questions.size() << "%" << endl;
     cout << "Thanks for playing, " << userName << "! Come back soon.\n";
     return 0;
 }
